@@ -51,8 +51,43 @@ public class TicTacToe {
 		else
 			return 0;		
 	}
+	/*Returns character string showing current board*/
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<3;i++){
+			for(int j=0;j<3;j++){
+				switch(board[i][j]){
+				case X:
+					sb.append("X");
+					break;
+				case O:
+					sb.append("O");
+					break;
+				case EMPTY:
+					sb.append(" ");
+					break;
+				}
+				if(j<2)			//column boundary
+					sb.append("|");					
+			}
+			if(i<2)
+				sb.append("\n-----\n");
+		}
+		return sb.toString();
+	}
+	/*Test run for the game*/
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		TicTacToe game = new TicTacToe();
+		
+		/*X Moves*/						/*O Moves*/
+		game.putMark(1, 0);				game.putMark(0, 2);
+		game.putMark(0, 1);				game.putMark(1, 2);
+		game.putMark(2, 1); 			game.putMark(0, 0); 
+		game.putMark(1, 1);
+		System.out.println(game);
+		int winningPlayer = game.winner();
+		String []outcome = {"O wins","Tie","X wins"};	//rely on ordering
+		System.out.println(outcome[1+winningPlayer]);
 
 	}
 
